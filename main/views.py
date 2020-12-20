@@ -2,8 +2,8 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from django.http import HttpResponseRedirect
 from rest_framework.response import Response
+from rest_framework.reverse import reverse
 from rest_framework import status
-from django.conf import settings
 from .models import Url
 import string
 import random
@@ -31,16 +31,13 @@ def shorten_url(request):
 
         # Generate short code for url
         url_code = get_short_code(5)
-
-        # Get base url from settings and generate shortened url
-        shortened_url = f"{settings.ALLOWED_HOSTS[0]}/{url_code}"
-
+        
         # Save url into the db
-        Url.objects.create(long_url=long_url, shortened_url=shortened_url, url_code=url_code)
+        Url.objects.create(long_url=long_url, url_code=url_code)
 
-        # Response to clients
+        # Success response with shortened url
         return Response(
-            {"message": "Success", "shortened_url": shortened_url}, 
+            {"message": "Success", "shortened_url": reverse("redirect", args=[url_code], request=request)}, 
             status=status.HTTP_201_CREATED)
     except:
         # In case of possible exceptions
