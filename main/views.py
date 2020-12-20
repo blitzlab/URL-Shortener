@@ -29,7 +29,7 @@ def shorten_url(request):
         # Get Original url
         long_url = request.data.get('url')
 
-        if len(long_url) == 0:
+        if long_url is None or len(long_url) == 0:
             return Response({"message": "Url is required"}, status=status.HTTP_400_BAD_REQUEST)
 
         # Generate short code for url
