@@ -39,10 +39,11 @@ def shorten_url(request):
         return Response(
             {"message": "Success", "shortened_url": reverse("redirect", args=[url_code], request=request)}, 
             status=status.HTTP_201_CREATED)
-    except:
+    except Exception as e:
         # In case of possible exceptions
+        print(e)
         return Response(
-            {"message": "Error!"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            {"message": f"{e}"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # Url redirect controller
 def url_redirect(request, url_code):
