@@ -1,18 +1,18 @@
 # URL-Shortener
-simple Restful API-driven URL Shortner Service
+Simple Restful API-driven URL Shortner Service
 
 # Base Url
 https://surlshortener.herokuapp.com/
 
 # Technologies
-Python 
-Django 
-Django Rest Framework 
-Sqlite
+Python, 
+Django, 
+Django Rest Framework, 
+PostgreSQL
 
 # Platform
-Postman
-REST-assured
+Postman,
+REST-assured,
 DRF
 
 # Usage
