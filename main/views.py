@@ -29,6 +29,9 @@ def shorten_url(request):
         # Get Original url
         long_url = request.data.get('url')
 
+        if len(long_url) == 0:
+            return Response({"message": "Url is required"}, status=status.HTTP_400_BAD_REQUEST)
+
         # Generate short code for url
         url_code = get_short_code(5)
         
