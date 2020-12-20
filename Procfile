@@ -1,1 +1,1 @@
-web: gunicorn multiplecqs.wsgi --log-file -
+web: gunicorn urlshortener.wsgi --log-file -
