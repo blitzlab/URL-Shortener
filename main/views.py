@@ -1,8 +1,7 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from rest_framework.decorators import api_view
 from django.http import HttpResponseRedirect
 from rest_framework.response import Response
-from rest_framework import generics
 from rest_framework import status
 from django.conf import settings
 from .models import Url
@@ -40,13 +39,13 @@ def shorten_url(request):
         Url.objects.create(long_url=long_url, shortened_url=shortened_url, url_code=url_code)
 
         # Response to clients
-        return Response({
-            "message": "Success",
-            "shortened_url": shortened_url}, status=status.HTTP_201_CREATED)
+        return Response(
+            {"message": "Success", "shortened_url": shortened_url}, 
+            status=status.HTTP_201_CREATED)
     except:
         # In case of possible exceptions
-        return Response({
-            "message": "Error!"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return Response(
+            {"message": "Error!"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 # Url redirect controller
 def url_redirect(request, url_code):
