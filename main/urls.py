@@ -6,5 +6,5 @@ app_name = "main"
 
 # Main app urls
 urlpatterns = [
-    path(r"shorten-url", views.shorten_url, name="shortenurl"),
+    path(r"shorten", views.shorten_url, name="shortenurl"),
 ]
