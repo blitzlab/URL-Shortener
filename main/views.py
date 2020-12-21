@@ -25,6 +25,7 @@ def get_short_code(length:int):
 # Shorten url controller
 
 @api_view(["POST"])
+@permission_classes([IsAuthenticated]) # User must login
 def shorten_url(request):
 
     try:
@@ -85,6 +86,7 @@ def signup(request):
         return Response(serialized._errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+# User Urls
 @api_view(['GET'])
 @permission_classes([IsAuthenticated]) # User must login
 def my_urls(request):
